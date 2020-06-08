@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
        
-   <h3 class="center-align">Existing Bugs</h3>   
-   <br>
+    <h3 class="center-align">View Projects</h3>   
  <ul class="collapsible popout">
-     {% for bug in bugs %}
+     {% for project in projects %}
     <li>
       <div class="collapsible-header"><i class="material-icons">expand_more</i>
-     <strong> {{bug.whats_wrong}} </strong> 
+     <strong> {{project.name}} </strong> - {{project.com_date}}
       </div>
       <div class="collapsible-body">
-          <span><strong>ID</strong> - {{bug._id}}</span><br>
-          <span>{{bug.how_to_repeat}}</span>
+          <span>{{project.description}}</span>
           </div>
     </li>
     {% endfor %}

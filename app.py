@@ -16,6 +16,18 @@ mongo = PyMongo(app)
 def get_bugs():
     return render_template("bugs.html", bugs=mongo.db.bugs.find())
     
+@app.route('/addbug')
+def add_bug():
+    return render_template('addbugs.html', projects=mongo.db.project.find())
+    
+@app.route('/addproject')
+def add_project():
+    return render_template('new_project.html')
+    
+@app.route('/projects')
+def get_projects():
+    return render_template("projects.html", projects=mongo.db.project.find())
+    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
