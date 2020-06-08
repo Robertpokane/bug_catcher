@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+       
+        
+ <ul class="collapsible popout">
+     {% for bug in bugs %}
+    <li>
+      <div class="collapsible-header"><i class="material-icons">expand_more</i>
+     <strong> {{bug.whats_wrong}} </strong>
+      </div>
+      <div class="collapsible-body">
+          <span>{{bug.how_to_repeat}}</span>
+          </div>
+    </li>
+    {% endfor %}
+  </ul>
+ 
+ {% endblock %}
