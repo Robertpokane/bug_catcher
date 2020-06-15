@@ -1,16 +1,20 @@
 {% extends 'base.html' %} {% block content %}
 <h3 class="center-align">
-  Record New Issue</h3>
+  Edit Issue</h3>
 
 
 <div class="row">
-  <form action="{{ url_for('insertbug') }}" method="POST" class="col s8 offset-s2">
+  <form action="{{ url_for('insertbug', bug_id=bug._id) }}" method="POST" class="col s8 offset-s2">
     <div class="input-field col s12">
       <i class="material-icons prefix">check</i>
       <select id="project" name="project_name">
-      <option value="" disabled selected>Choose your option</option>
+      <option value="" disabled >Choose your option</option>
       {% for project in projects %}
-      <option value="{{project.name}}"> {{project.name}}</option>
+        {% if project.name == bug.project_name %}
+      <option value="{{project.name}}" selected > {{project.name}}</option>
+      {% else %}
+      <option value="{{project.name}}" > {{project.name}}</option>
+      {% endif %}
       {% endfor %}
     </select>
       <label>Select Project</label>
@@ -19,13 +23,13 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input id="whats_wrong" name="whats_wrong" type="text" data-length="30">
+        <input id="whats_wrong" name="whats_wrong" type="text" data-length="30" value="{{bug.whats_wrong}}">
         <label for="whats_wrong">What Is The Error?</label>
         <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">redo</i>
-        <input id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150">
+        <input id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150" value="{{bug.how_to_repeat}}">
         <label for="how_to_repeat">How To Repeat The Error</label>
         <span class="helper-text" data-error="The explaination is too long, please reduce." data-success=""></span>
       </div>
@@ -33,8 +37,11 @@
 
     <div class="switch">
       <label>
-     
-      <input id="urgent" type="checkbox">
+       {% if bug.urgent %}
+      <input id="urgent" type="checkbox" checked>
+      {% else %}
+      <input id="urgent" type="checkbox" >
+      {% endif %}
       <span class="lever"></span>
      Urgent
     </label>

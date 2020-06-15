@@ -3,20 +3,20 @@
 
 <head>
 
-
+    <link rel="icon" type="image/png" sizes="32x32" href="static/css/favicon-32x32.png">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 
 </head>
 
 <body>
-  
-    {% block content %} {% endblock %}
+  <div class="container">
+      {% block content %} {% endblock %}
+      
+  </div>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
@@ -27,6 +27,8 @@
     $('input#whats_wrong, input#how_to_repeat, input#description, input#name').characterCounter();
     $('.datepicker').datepicker();
     $('select').formSelect();
+    
+    
     </script>
 
 </body>

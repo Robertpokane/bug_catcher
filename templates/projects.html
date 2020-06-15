@@ -7,6 +7,8 @@
     <li>
       <div class="collapsible-header"><i class="material-icons">expand_more</i>
      <strong> {{project.name}} </strong> - {{project.com_date}}
+      <a class="waves-effect waves-light btn btn_small green">Done</a>
+                <a href="{{url_for('editproject', project_id=project._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
       </div>
       <div class="collapsible-body">
           <span>{{project.description}}</span>
