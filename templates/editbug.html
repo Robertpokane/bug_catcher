@@ -4,7 +4,7 @@
 
 
 <div class="row">
-  <form action="{{ url_for('insertbug', bug_id=bug._id) }}" method="POST" class="col s8 offset-s2">
+  <form action="{{ url_for('update_bug', bug_id=bug._id) }}" method="POST" class="col s8 offset-s2">
     <div class="input-field col s12">
       <i class="material-icons prefix">check</i>
       <select id="project" name="project_name">
@@ -20,23 +20,24 @@
       <label>Select Project</label>
     </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">create</i>
-        <input id="whats_wrong" name="whats_wrong" type="text" data-length="30" value="{{bug.whats_wrong}}">
-        <label for="whats_wrong">What Is The Error?</label>
-        <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">redo</i>
-        <input id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150" value="{{bug.how_to_repeat}}">
-        <label for="how_to_repeat">How To Repeat The Error</label>
-        <span class="helper-text" data-error="The explaination is too long, please reduce." data-success=""></span>
-      </div>
-    </div>
 
-    <div class="switch">
-      <label>
+<div class="row">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">create</i>
+    <input id="whats_wrong" name="whats_wrong" type="text" data-length="30" value="{{bug.whats_wrong}}">
+    <label for="whats_wrong">What Is The Error?</label>
+    <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
+  </div>
+  <div class="input-field col s12">
+    <i class="material-icons prefix">redo</i>
+    <input id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150" value="{{bug.how_to_repeat}}">
+    <label for="how_to_repeat">How To Repeat The Error</label>
+    <span class="helper-text" data-error="The explaination is too long, please reduce." data-success=""></span>
+  </div>
+</div>
+
+<div class="switch">
+  <label>
        {% if bug.urgent %}
       <input id="urgent" type="checkbox" checked>
       {% else %}
@@ -45,30 +46,34 @@
       <span class="lever"></span>
      Urgent
     </label>
-    </div>
-    <br>
-    <div class="switch">
-      <label>
-     
-      <input id="reoccuring" type="checkbox">
+</div>
+<br>
+<div class="switch">
+  <label>
+   
+      <input id="reoccuring" type="checkbox" checked>
+   
+      <input id="reoccuring" type="checkbox" >
+   
       <span class="lever"></span>
      Reoccuring
     </label>
-    </div>
-    <br>
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">push_pin</i>
-        <input disabled id="_id" name="_id" type="text" data-length="30">
-        <label for="_id">Disabled Unless Reoccuring Selected</label>
-      </div>
+</div>
+<br>
+<div class="row">
+  <div class="input-field col s12">
+    <i class="material-icons prefix">push_pin</i> 
+         <input disabled id="_id" name="_id" type="text" data-length="30">
+       <label for="_id">Disabled Unless Reoccuring Selected</label> 
+    
+  </div>
 
-      <button class="btn waves-effect waves-light" type="submit">Add Task
+  <button class="btn waves-effect waves-light" type="submit">Amend Task
                 <i class="material-icons right">playlist_add</i>
              </button>
 
 
   </form>
-  </div>
+</div>
 
-  {% endblock %}
+{% endblock %}

@@ -4,7 +4,7 @@
 
 
 <div class="row">
-  <form action="url_for('add_project', project_id=project._id" method="POST"  class="col s8 offset-s2">
+  <form action="{{url_for('update_project', project_id=project._id)}}" method="POST" class="col s8 offset-s2">
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
@@ -12,30 +12,32 @@
         <label for="name">Project Name</label>
         <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
       </div>
-       <div class="input-field col s12">
-      <i class="material-icons prefix">notes</i>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">notes</i>
         <input id="description" name="description" type="text" data-length="80" value="{{project.description}}">
         <label for="description">Description</label>
         <span class="helper-text" data-error="Description too long. Please reduce." data-success=""></span>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">event</i>
-        <input id="com_date" type="text" class="datepicker">
+        <input id="com_date" name="com_date" type="text" class="datepicker">
         <label for="com_date">Project Finish Date</label>
-        
-          <a class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+
+       <button class="btn waves-effect waves-light" type="submit">Edit Project
+                <i class="material-icons right">playlist_add</i>
+             </button>
       </div>
     </div>
 
-   </form>
-  </div>
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() {
-    due_date = Date.parse('{{project.com_date}}');
-    $('#com_date').pickdate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
-  });
-  
+    $(document).ready(function() {
+        due_date = Date.parse('{{project.com_date}}');
+        $('#com_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
+    });
 </script>
 
-  {% endblock %}
+{% endblock %}

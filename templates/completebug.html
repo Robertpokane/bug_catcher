@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block content %}
+<h3 class="center-align">
+    Repaired Issues</h3>
+
+
+<div class="row">
+    <form action="{{ url_for('migrate_bug', bug_id=bug._id) }}" method="POST" class="col s8 offset-s2">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">check</i>
+            <select disabled id="project" name="project_name">
+      <option value="" disabled >Choose your option</option>
+      {% for project in projects %}
+        {% if project.name == bug.project_name %}
+      <option value="{{project.name}}" selected > {{project.name}}</option>
+      {% else %}
+      <option value="{{project.name}}" disabled > {{project.name}}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+            <label>Select Project</label>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">create</i>
+                <input disabled id="whats_wrong" name="whats_wrong" type="text" data-length="30" value="{{bug.whats_wrong}}">
+                <label for="whats_wrong">What Is The Error?</label>
+                <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">redo</i>
+                <input disabled id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150" value="{{bug.how_to_repeat}}">
+                <label for="how_to_repeat">How To Repeat The Error</label>
+                <span class="helper-text" data-error="The explaination is too long, please reduce." data-success=""></span>
+            </div>
+        </div>
+
+
+        <p>
+            <label>
+      <input class="with-gap" name="completed" type="radio" />
+      <span>Please Click This Button To Confirm That The Issue Was Fixed</span>
+    </label>
+        </p>
+
+        <div class="row">
+            
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="fix" name="fix" class="materialize-textarea"></textarea>
+                        <label for="fix">How The Error Was Amended</label>
+                    </div>
+                </div>
+          
+        </div>
+
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit">Mark As Repaired
+                <i class="material-icons right"></i>
+             </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock %}
