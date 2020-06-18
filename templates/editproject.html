@@ -36,7 +36,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         due_date = Date.parse('{{project.com_date}}');
-        $('#com_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
+       // $('#com_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
+       $('#com_date').datepicker();
+       alert("done")
     });
 </script>
 
