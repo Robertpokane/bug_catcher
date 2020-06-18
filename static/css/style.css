@@ -9,3 +9,12 @@
 .bugs_header {
     margin-top: 5px;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.brand-logo {
+    margin-left: 15px;
+}

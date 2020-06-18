@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<h3 class="center-align">Completed Bugs</h3>
+<h3 class="center-align">Completed Issues</h3>
 <br>
 <ul class="collapsible popout">
     {% for bug in bugs %}
@@ -11,7 +11,7 @@
             <div class="col s3">
                 <i class="material-icons">expand_more</i>
                 
-                <a href="{{url_for('delete_bug', bug_id=bug._id)}}"class="waves-effect waves-light btn btn_small red">Delete</a>
+                <a href="{{url_for('remove_bug', bug_id=bug._id)}}"class="waves-effect waves-light btn btn_small red">Delete</a>
             </div>
             <div class="bugs_header col s9">
                 <strong> {{bug.whats_wrong}} </strong>
@@ -23,7 +23,7 @@
         </div>
         <div class="collapsible-body">
             <span><strong>ID</strong> - {{bug._id}}</span><br>
-            <span>{{bug.how_to_repeat}}</span>
+            <span>{{bug.how_to_repeat}} - <strong>{{bug.fix}}</strong> </span>
             
             </div>
     </li>

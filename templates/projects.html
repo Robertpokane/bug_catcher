@@ -7,7 +7,7 @@
     <li>
       <div class="collapsible-header"><i class="material-icons">expand_more</i>
      <strong> {{project.name}} </strong> - {{project.com_date}}
-      <a class="waves-effect waves-light btn btn_small green">Done</a>
+      <a href="{{url_for('complete_project', project_id=project._id)}}"class="waves-effect waves-light btn btn_small green">Done</a>
       <a href="{{url_for('editproject', project_id=project._id)}}" class="waves-effect waves-light btn btn_small blue">Edit</a>
       <a href="{{url_for('delete_project', project_id=project._id)}}"class="waves-effect waves-light btn btn_small red">Delete</a>
       </div>
@@ -17,5 +17,6 @@
     </li>
     {% endfor %}
   </ul>
- 
+ <button class="btn waves-effect waves-light" ><a href="{{url_for('add_project')}}">Add Project
+                <i class="material-icons right">playlist_add</a></i>
  {% endblock %}

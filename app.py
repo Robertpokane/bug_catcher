@@ -26,7 +26,7 @@ def add_project():
     
 @app.route('/projects')
 def get_projects():
-    return render_template('projects.html', projects=mongo.db.project.find())
+    return render_template('projects.html', projects=mongo.db.project.find({'completed':{ '$ne':'on'}}))
     
 @app.route('/insertbug', methods=["POST"])
 def insertbug():
@@ -62,6 +62,7 @@ def update_bug(bug_id):
     'how_to_repeat': request.form.get('how_to_repeat'),
     'urgent':request.form.get('urgent'),
     'reoccuring':request.form.get('reoccuring')
+    
     })
     
     
@@ -71,6 +72,11 @@ def update_bug(bug_id):
 def delete_bug(bug_id):
     mongo.db.bugs.remove({"_id": ObjectId(bug_id)})
     return redirect(url_for('get_bugs'))
+
+@app.route('/remove_bug/<bug_id>')
+def remove_bug(bug_id):
+    mongo.db.bugs.remove({"_id": ObjectId(bug_id)})
+    return redirect(url_for('get_complete'))
 
 @app.route('/delete_project/<project_id>')
 def delete_project(project_id):
@@ -108,11 +114,31 @@ def migrate_bug(bug_id):
     'fix':request.form.get('fix'),
     'completed':request.form.get('completed')
     })
-    return redirect(url_for('get_bugs'))
+    return redirect(url_for('get_complete', bug=bugs))
+    
+@app.route('/complete_project/<project_id>')
+def complete_project(project_id):
+   projects =  mongo.db.project.find_one({"_id": ObjectId(project_id)})
+   return render_template('completedproject.html', project=projects)
 
 @app.route('/get_complete')
 def get_complete():
     return render_template('completedlist.html', bugs=mongo.db.bugs.find({'completed':'on'}))
+
+@app.route('/end_project/<project_id>', methods=["POST"])
+def end_project(project_id):
+    project = mongo.db.project
+    project.update( {'_id': ObjectId(project_id)},
+    {
+   'name':request.form.get('name'),     
+   'description':request.form.get('description'),
+   'com_date':request.form.get('com_date'),
+   'completed':request.form.get('completed'),
+   'com_date_actual':request.form.get('com_date_actual'),
+    'delay-reason':request.form.get('delay')
+    })
+    return redirect(url_for('get_projects', projects=project))    
+
    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

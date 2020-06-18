@@ -3,32 +3,52 @@
 
 <head>
 
-    <link rel="icon" type="image/png" sizes="32x32" href="static/css/favicon-32x32.png">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="static/css/favicon-32x32.png">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 
 </head>
 
 <body>
+  <header>
+    <nav>
+      <div class="nav-wrapper  purple darken-1">
+        <a href="{{url_for('get_bugs')}}" class="brand-logo">Issue Tracker</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down  purple darken-1">
+          <li><a href="{{url_for('get_bugs')}}">Home</a></li>
+          <li><a href="{{url_for('add_bug')}}">New Error</a></li>
+          <li><a href="{{url_for('get_projects')}}">Projects</a></li>
+          <li><a href="{{url_for('get_complete')}}">Completed</a></li>
+        </ul>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger  purple darken-1"><i class="material-icons">menu</i></a>
+        <ul class="sidenav" id="mobile-demo">
+          <li><a href="{{url_for('get_bugs')}}">Home</a></li>
+          <li><a href="{{url_for('add_bug')}}">New Error</a></li>
+          <li><a href="{{url_for('get_projects')}}">Projects</a></li>
+          <li><a href="{{url_for('get_complete')}}">Completed</a></li>
+        </ul>
+      </div>
+    </nav>
+
+  </header>
   <div class="container">
-      {% block content %} {% endblock %}
-      
+    {% block content %} {% endblock %}
+
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('.collapsible').collapsible();
-        $('select').formSelect();
-         $('input#whats_wrong, input#how_to_repeat, input#description, input#name').characterCounter();
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.collapsible').collapsible();
+      $('select').formSelect();
+      $('input#whats_wrong, input#how_to_repeat, input#description, input#name').characterCounter();
       $('.datepicker').datepicker();
-      });
-     
-      
-    </script>
+      $('.sidenav').sidenav();
+    });
+  </script>
 
 </body>
 
