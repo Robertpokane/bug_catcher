@@ -18,7 +18,7 @@ def get_bugs():
     
 @app.route('/addbug')
 def add_bug():
-    return render_template('addbugs.html', projects=mongo.db.project.find())
+    return render_template('addbugs.html', projects=mongo.db.project.find({'completed':{ '$ne':'on'}}))
     
 @app.route('/addproject')
 def add_project():
@@ -44,7 +44,7 @@ def insertproject():
 @app.route('/edit_bug/<bug_id>')
 def edit_bug(bug_id):
     the_bug =  mongo.db.bugs.find_one({"_id": ObjectId(bug_id)})
-    projects =  mongo.db.project.find()
+    projects =  mongo.db.project.find({'completed':{ '$ne':'on'}})
     return render_template('editbug.html', bug=the_bug, projects=projects)
     
 @app.route('/editproject/<project_id>')
@@ -90,8 +90,7 @@ def update_project(project_id):
     project.update({'_Id': ObjectId(project_id)},
     {
       'project_name':request.form.get('name'),
-      'description':request.form.get('description'),
-      'com_date':request.form.get('com_date')
+      'description':request.form.get('description')
     })
     return redirect(url_for('get_projects'))
     
@@ -135,7 +134,7 @@ def end_project(project_id):
    'com_date':request.form.get('com_date'),
    'completed':request.form.get('completed'),
    'com_date_actual':request.form.get('com_date_actual'),
-    'delay-reason':request.form.get('delay')
+   'delay-reason':request.form.get('delay')
     })
     return redirect(url_for('get_projects', projects=project))    
 
