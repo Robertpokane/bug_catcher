@@ -11,7 +11,7 @@ cmdln==2.0.0
 CodeIntel==2.0.0
 configparser==4.0.2
 cryptography==2.1.4
-Django==1.11.10
+Django==1.11.29
 enum34==1.1.6
 esprima==4.0.1
 futures==3.3.0
