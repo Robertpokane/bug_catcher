@@ -24,13 +24,13 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">create</i>
-                <input   id="whats_wrong" name="whats_wrong" type="text" data-length="30" value="{{bug.whats_wrong}}">
+                <input id="whats_wrong" name="whats_wrong" type="text"  maxlength="31" data-length="30" value="{{bug.whats_wrong}}">
                 <label for="whats_wrong">What Is The Error?</label>
                 <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">redo</i>
-                <input   id="how_to_repeat" name="how_to_repeat" type="text" class="validate" data-length="150" value="{{bug.how_to_repeat}}">
+                <input id="how_to_repeat" name="how_to_repeat" type="text" class="validate"  maxlength="151" data-length="150" value="{{bug.how_to_repeat}}">
                 <label for="how_to_repeat">How To Repeat The Error</label>
                 <span class="helper-text" data-error="The explaination is too long, please reduce." data-success=""></span>
             </div>
@@ -45,14 +45,15 @@
         </p>
 
         <div class="row">
-            
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea id="fix" name="fix" class="materialize-textarea"></textarea>
-                        <label for="fix">How The Error Was Amended</label>
-                    </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">description</i>
+                    <textarea id="fix" name="fix" class="materialize-textarea"></textarea>
+                    <label for="fix">How The Error Was Amended</label>
                 </div>
-          
+            </div>
+
         </div>
 
         <div class="row">

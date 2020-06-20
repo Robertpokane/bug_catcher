@@ -8,57 +8,58 @@
     <div class="row">
       <div class="input-field col s12">
         <i class="material-icons prefix">create</i>
-        <input   id="name" name="name" type="text" data-length="30" value="{{project.name}}">
+        <input id="name" name="name" type="text"  maxlength="31" data-length="30" value="{{project.name}}">
         <label for="name">Project Name</label>
         <span class="helper-text" data-error="Too many charactors, please condense." data-success=""></span>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">notes</i>
-        <input   id="description" name="description" type="text" data-length="80" value="{{project.description}}">
+        <input id="description" name="description" type="text"  maxlength="81" data-length="80" value="{{project.description}}">
         <label for="description">Description</label>
         <span class="helper-text" data-error="Description too long. Please reduce." data-success=""></span>
       </div>
       <div class="input-field col s12">
         <i class="material-icons prefix">event</i>
-        <input   id="com_date" name="com_date" type="text" class="datepicker" value="{{project.com_date}}">
+        <input id="com_date" name="com_date" type="text" class="datepicker" value="{{project.com_date}}">
         <label for="com_date">Project Finish Date</label>
 
       </div>
-      
+
       <div class="input-field col s12">
         <i class="material-icons prefix">event</i>
-        <input   id="com_date_actual" name="com_date_actual" type="text" class="datepicker">
+        <input id="com_date_actual" name="com_date_actual" type="text" class="datepicker">
         <label for="com_date_actual">Actual Completion Date</label>
-        
-         <div class="input-field col s12">
-        <i class="material-icons prefix">notes</i>
-        <input   id="delay-reason" name="delay-reason" type="text" data-length="80" >
-        <label for="delay-reason">What,If Any, Was THe Delay in Completion</label>
-        <span class="helper-text" data-error="Description too long. Please reduce." data-success=""></span>
       </div>
       
-      <p>
-            <label>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">description</i>
+          <input id="delay-reason" name="delay-reason" type="text" data-length="80">
+          <label for="delay-reason">What, If Any, Was The Delay in Completion</label>
+          <span class="helper-text" data-error="Description too long. Please reduce." data-success=""></span>
+        </div>
+
+        <p>
+          <label>
       <input class="with-gap" name="completed" type="radio" />
       <span>Please Click This Button To Confirm That The Project was Completed</span>
-    </label>
+        </label>
         </p>
 
-       <button class="btn waves-effect waves-light" type="submit">Finish Project
+        <button class="btn waves-effect waves-light" type="submit">Finish Project
                 <i class="material-icons right">playlist_add</i>
              </button>
       </div>
-    </div>
+    
 
   </form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        due_date = Date.parse('{{project.com_date}}');
-        $('#com_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
-    });
+  $(document).ready(function() {
+    due_date = Date.parse('{{project.com_date}}');
+    $('#com_date').pickadate('picker').set('select', due_date, { format: 'dd/mm/yyyy' }).trigger('change');
+  });
 </script>
 
 {% endblock %}

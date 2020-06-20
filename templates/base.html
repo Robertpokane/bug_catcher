@@ -44,9 +44,11 @@
     $(document).ready(function() {
       $('.collapsible').collapsible();
       $('select').formSelect();
-      $('input#whats_wrong, input#how_to_repeat, input#description, input#name').characterCounter();
+      $('input#whats_wrong, textarea#how_to_repeat, textarea#description, input#name').characterCounter();
       $('.datepicker').datepicker();
       $('.sidenav').sidenav();
+      $('#textarea1').val('New Text');
+  M.textareaAutoResize($('#textarea1'));
     });
   </script>
 

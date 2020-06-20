@@ -97,7 +97,7 @@ def update_project(project_id):
 @app.route('/complete_bug/<bug_id>')
 def complete_bug(bug_id):
    the_bug =  mongo.db.bugs.find_one({"_id": ObjectId(bug_id)})
-   projects =  mongo.db.project.find()
+   projects =  mongo.db.project.find({'completed':{ '$ne':'on'}})
    return render_template('completebug.html', bug=the_bug, projects=projects)
    
 @app.route('/migrate_bug/<bug_id>', methods=["POST"])
@@ -142,4 +142,4 @@ def end_project(project_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
-    debug=True)
+    debug=False)
