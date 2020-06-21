@@ -23,8 +23,8 @@ def add_bug():
     
 @app.route('/edit_bug/<bug_id>')
 def edit_bug(bug_id):
-    the_bug =  mongo.db.bugs.find_one({"_id": ObjectId(bug_id)})
-    projects =  mongo.db.project.find({'completed':{ '$ne':'on'}})
+    the_bug =  mongo.db.bugs.find_one( {"_id": ObjectId(bug_id)})
+    projects =  mongo.db.project.find( {'completed':{ '$ne':'on'}})
     return render_template('editbug.html', bug=the_bug, projects=projects)    
     
 @app.route('/insertbug', methods=["POST"])
@@ -33,18 +33,13 @@ def insertbug():
     bugs.insert_one(request.form.to_dict())
     return redirect(url_for('get_bugs'))
     
-@app.route('/insertproject', methods=["POST"])
-def insertproject():
-    project=mongo.db.project
-    project.insert_one(request.form.to_dict())
-    return redirect(url_for('get_projects'))     
     
 @app.route('/update_bug/<bug_id>', methods=["POST"])
 def update_bug(bug_id):
     bugs = mongo.db.bugs
     bugs.update( {'_id': ObjectId(bug_id)},
     {
-    'project_name':request.form.get('name'),
+    'project_name':request.form.get('project_name'),
     'whats_wrong':request.form.get('whats_wrong'),
     'how_to_repeat': request.form.get('how_to_repeat'),
     'urgent':request.form.get('urgent'),
@@ -97,7 +92,7 @@ def get_projects():
 
 @app.route('/editproject/<project_id>')
 def editproject(project_id):
-    project =  mongo.db.project.find_one({"_id": ObjectId(project_id)})
+    project =  mongo.db.project.find_one( {"_id": ObjectId(project_id)})
     return render_template('editproject.html', project=project)
 
 @app.route('/delete_project/<project_id>')
@@ -118,6 +113,12 @@ def update_project(project_id):
       
     })
     print(request.form)
+    return redirect(url_for('get_projects'))
+
+@app.route('/insertproject', methods=["POST"])
+def insertproject():
+    project=mongo.db.project
+    project.insert_one(request.form.to_dict())
     return redirect(url_for('get_projects'))
 
     
